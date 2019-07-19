@@ -1,5 +1,8 @@
-import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import React, { Component } from 'react';
+import { 
+  StyleSheet, Text, View, Image, TouchableOpacity,
+  TouchableHighlight
+} from 'react-native';
 import colors from '../styles/colors'
 import RoundedButton from '../components/buttons/RoundedButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -49,11 +52,14 @@ export default class LoggedOut extends Component {
             onPress={() => {this.onPressMoreOptions()}}>
             <Text style={styles.moreOptionsText}>More Options</Text>
           </TouchableOpacity>
-          <View style={styles.termsWrapper}>
-            <Text style={styles.termsText}>
-              By tapping Continue, Create Account, or More, I agree to 
-              Airbnb's user security and user privacy policies.
-            </Text>
+          <View style={styles.termsAndConditions}>
+            {/* Divided text among a few lines so that they're individual parts and they can wrap */}
+            <Text style={styles.termsText}>By tapping Continue, Create Account, </Text>
+            <Text style={styles.termsText}>or More, I agree to </Text>
+            <Text style={styles.termsText}>Airbnb's </Text>
+            <TouchableHighlight style={styles.linkButton}>
+              <Text style={styles.termsText}>Terms of Service</Text>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -98,15 +104,19 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 16,
   },
-  termsWrapper: {
-    marginTop: 30,
-    flexWrap: 'wrap', // To wrap the text
+  termsAndConditions: {
     flexDirection: 'row',
+    marginTop: 30,
     alignItems: 'flex-start',
+    flexWrap: 'wrap', // To wrap the text
   },
   termsText: {
     color: colors.white,
     fontSize: 13,
     fontWeight: '600',
+  },
+  linkButton: {
+    borderBottomWidth: 1,
+    borderColor: colors.white,
   },
 })
